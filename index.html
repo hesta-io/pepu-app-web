@@ -32,9 +32,66 @@
     <meta name="apple-mobile-web-app-title" content="pepu">
     <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Pepu</title>
 
     <link rel="manifest" href="manifest.json">
+
+    <style>
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .ring {
+  --uib-size: 50px;
+  --uib-speed: 2s;
+  --uib-color: #9241FE;
+
+  height: var(--uib-size);
+  width: var(--uib-size);
+  vertical-align: middle;
+  transform-origin: center;
+  animation: rotate var(--uib-speed) linear infinite;
+}
+
+.ring circle {
+  fill: none;
+  stroke: var(--uib-color);
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: stretch calc(var(--uib-speed) * 0.75) ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stretch {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dashoffset: -124px;
+  }
+}
+  </style>
 </head>
 <body>
 <!-- This script installs service_worker.js to provide PWA functionality to
@@ -42,7 +99,8 @@
      https://developers.google.com/web/fundamentals/primers/service-workers -->
 
 <script>
-    const serviceWorkerVersion = "616158192";
+
+    const serviceWorkerVersion = "1713378553";
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -106,6 +164,15 @@
     }
 
 </script>
+<div class="loading">
+    <svg
+            class="ring"
+            viewBox="25 25 50 50"
+            stroke-width="5"
+    >
+        <circle cx="50" cy="50" r="20" />
+    </svg>
+</div>
 
 
 <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
